@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Title</title>
+    <link rel="stylesheet" href="index.css"/>
+    <link rel="stylesheet" href="Home.css"/>
+  
+</head>
+<body>
+    <!-- Placeholder for the header -->
+    <div id="header"></div>
+
+    <main class="main-container">
+        <div class="main-content">
+            <div class="content">
+        <h1><span class="AI">Artificial Intelligence </span>Memory Assistant</h1>
+        <p>Never forget a task, idea, or meeting again. Your personalized memory assistant, powered by advanced AI.</p>
+        <button>Try Now!</button>
+    </div>
+        <div class="video">
+        <video autoplay loop>    <source src="Assets/Brain.mp4" type="video/mp4"></video>
+    </div>
+    </div>
+    <div class="features">
+        <div>
+        <img src="Assets/features-image.png" alt="features-image" class="features-image"/>
+    </div>
+  
+    <div class="key-features">
+        <h2>Key features</h2>
+        <p class="feature-1">Easily remember tasks, keeping your mind clear.</p>
+        <p class="feature-2">Get proactive hints for a smoother experience.</p>
+        <p class="feature-3">Record, save, and find your ideas instantly.</p>
+        <p class="feature-4">Stay connected wherever you are.</p>
+        <p class="feature-5">Securely store your memories forever.</p>
+    </div>
+    </div>
+    </main>
+
+    <script>
+        // Dynamically load the header using js 
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('Header.html') 
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load header');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                   
+                    document.getElementById('header').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        });
+    </script>
+</body>
+</html>
