@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="Contact.css" />
+
+    </head>
+    <body class="contact-container">
+        <div id="header"></div>
+        <main class="contact-content" >
+            
+            <h1>We’d Love to Hear From You!</h1>
+            <p>
+                Have questions, feedback, or need assistance? Our team is here to help.
+            </p>
+            <div class="form-content">
+                <h2>Let’s Connect Constellations</h2>
+                <p>We’d Love to Hear From You!</p>
+                <form>
+                    <input type="text" id="first-name" placeholder="First Name" required>
+                    <input type="text" id="last-name" placeholder="Last Name" required>
+                    <input type="email" id="email" placeholder="Name@gmail.com" required>
+                    <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            
+           
+        </main>
+    </body>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+            fetch('Header.html')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load header');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+
+                    document.getElementById('header').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        });
+    </script>
+</html>
