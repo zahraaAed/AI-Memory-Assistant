@@ -1,0 +1,24 @@
+/*footer*/
+footer{
+   
+   
+    padding: 30px;
+}
+.footer-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer-content p,h2{
+    text-align: center;
+    width: 40%;
+    padding-top: 30px;
+}
+
+.footer-bottom span{
+    color:#6096D9;
+}
+.footer-bottom{
+  padding-top: 30px;
+    text-align: center;
+}
