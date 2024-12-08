@@ -1,50 +1,167 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
+
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="Contact.css" />
+</head>
 
-    </head>
-    <body class="contact-container">
-        <div id="header"></div>
-        <main class="contact-content" >
-            
-            <h1>We’d Love to Hear From You!</h1>
-            <p>
-                Have questions, feedback, or need assistance? Our team is here to help.
-            </p>
-            <div class="form-content">
-                <h2>Let’s Connect Constellations</h2>
-                <p>We’d Love to Hear From You!</p>
-                <form>
-                    <input type="text" id="first-name" placeholder="First Name" required>
-                    <input type="text" id="last-name" placeholder="Last Name" required>
-                    <input type="email" id="email" placeholder="Name@gmail.com" required>
-                    <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-            
-           
-        </main>
-    </body>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-            fetch('Header.html')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to load header');
-                    }
-                    return response.text();
-                })
-                .then(data => {
+<body class="contact-container">
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+    <div id="header"></div>
+    <main class="contact-content">
+        <h1>We’d Love to Hear From You!</h1>
+        <p>
+            Have questions, feedback, or need assistance? Our team is here to help.
+        </p>
+        <div class="form-content">
+            <h2>Let’s Connect Constellations</h2>
+            <p>We’d Love to Hear From You!</p>
+            <form id="contact-form">
+                <input type="text" id="first-name" placeholder="First Name" required class="contact-input">
+                <input type="text" id="last-name" placeholder="Last Name" required class="contact-input">
+                <input type="email" id="email" placeholder="Name@gmail.com" required class="contact-input">
+                <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="form-feedback" style="display: none; margin-top: 20px;"></div>
+        </div>
+    </main>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Load header dynamically
+        fetch('Header.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load header');
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    });
+    // Form handling
+    const form = document.getElementById('contact-form');
+    const feedback = document.getElementById('form-feedback');
 
-                    document.getElementById('header').innerHTML = data;
-                })
-                .catch(error => console.error('Error loading header:', error));
+    form.addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent default submission
+
+        // Gather form data
+        const firstName = document.getElementById('first-name').value.trim();
+        const lastName = document.getElementById('last-name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        // Validate inputs
+        if (!firstName || !lastName || !email || !message) {
+            feedback.style.display = 'block';
+            feedback.style.color = 'red';
+            feedback.textContent = 'Please fill out all fields.';
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            feedback.style.display = 'block';
+            feedback.style.color = 'red';
+            feedback.textContent = 'Please enter a valid email address.';
+            return;
+        }
+
+        // Success feedback
+        feedback.style.display = 'block';
+        feedback.style.color = 'green';
+        feedback.textContent = `Thank you, ${firstName}! Your message has been submitted.`;
+
+        // Optionally log the data or send it to a server
+        console.log({ firstName, lastName, email, message });
+
+        // Reset the form
+        form.reset();
+    });
+
+    // Email validation helper function
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    // Cursor animation
+    const cursorDot = document.querySelector("[data-cursor-dot]");
+    const cursorOutline = document.querySelector("[data-cursor-outline]");
+
+    if (cursorDot && cursorOutline) {
+        console.log("Cursor elements found!");
+
+        let posX = 0, posY = 0; // Cursor-dot position
+        let outlineX = 0, outlineY = 0; // Cursor-outline position
+
+        window.addEventListener("mousemove", (e) => {
+            posX = e.clientX;
+            posY = e.clientY;
+
+            // Instantly update cursor-dot position
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
         });
-    </script>
+
+        // Add a trailing effect using requestAnimationFrame
+        const animateOutline = () => {
+            // Smoothly interpolate outline's position towards the dot
+            outlineX += (posX - outlineX) * 0.2; // Adjust speed with the factor (0.2)
+            outlineY += (posY - outlineY) * 0.2;
+
+            cursorOutline.style.left = `${outlineX}px`;
+            cursorOutline.style.top = `${outlineY}px`;
+
+            requestAnimationFrame(animateOutline); // Keep animating
+        };
+        animateOutline(); // Start the animation loop
+
+        // Add click effect without misaligning the dot
+        window.addEventListener("mousedown", () => {
+            cursorOutline.style.transform = "translate(-50%, -50%) scale(0.8)";
+        });
+
+        window.addEventListener("mouseup", () => {
+            cursorOutline.style.transform = "translate(-50%, -50%) scale(1)";
+        });
+    } else {
+        console.error("Cursor elements not found. Check your HTML structure.");
+    }
+    ///////////////////////////////////////////////////////////////////////
+
+    // Counter animation (if any counters are present in your HTML)
+    const counters = document.querySelectorAll('.count');
+    const speed = 200; // Adjust speed as needed
+
+    counters.forEach((counter) => {
+        const updateCount = () => {
+            const target = parseInt(counter.getAttribute('data-target'), 10);
+            const count = parseInt(counter.innerText, 10);
+
+            // Dynamically calculate increment
+            const increment = Math.ceil(target / speed);
+
+            if (count < target) {
+                counter.innerText = count + increment > target ? target : count + increment;
+                setTimeout(updateCount, 80); // Adjust timing for smooth animation
+            } else {
+                counter.innerText = target; // Ensure final value matches the target
+            }
+        };
+
+        updateCount();
+    });
+
+</script>
+
 </html>

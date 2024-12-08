@@ -11,10 +11,10 @@
         <ul class="nav-list">
             <li><a href="Home.html">Home</a></li>
             <li><a href="About.html">About</a></li>
-            <li><a href="Services.html">Services</a></li>
+            <li><a href="Service.html">Services</a></li>
             <li><a href="Contact.html">Contact</a></li>
         </ul>
-        <div>
+        <div class="theme-toggle">
         <input type="checkbox" id="darkmode-toggle" />
         <label for="darkmode-toggle"></label>
         <svg xmlns="http://www.w3.org/2000/svg" class="sun" viewBox="0 0 512 512">
@@ -31,5 +31,13 @@
     </div>
     </nav>
 </header>
-
+<script>
+    document.getElementById("darkmode-toggle").addEventListener('change', function() {
+        if (this.checked) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    });
+</script>
 </html>

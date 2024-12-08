@@ -1,0 +1,345 @@
+:root {
+    /* --background-color-page: #f2f2f2; */
+    --container-background-color:#FCFCFC;
+    --white: #fff;
+    --white-container: #fff;
+    --shadow-container-color: rgba(10, 198, 230, 1);
+    --text-color: #555;
+}
+*{
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select: none;
+    background-color: var(--background-color-page);
+}
+.body{
+    cursor:none;
+   
+}
+.dark{
+    --white: #1b1b1b;
+    --background-color-page: #1b1b1b;
+    --container-background-color:#FCFCFC;
+    --shadow-container-color: rgba(10, 198, 230, 1);
+    --marquee-background-color:rgb(119, 208, 223);
+    --text-color: #ffffff;
+}
+/* General Styles */
+.first-section {
+    background-color: var(--background-color-page); /* White background */
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    text-align: center;
+    position: relative;
+    padding: 50px 20px;
+  }
+  
+  .first-section .content {
+    max-width: 50%;
+    margin-right: 50px;
+  }
+  
+  .first-section h1 {
+    font-size: 32px;
+    color: rgba(10, 198, 230, 1);
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid; /* This gives the typing effect a "cursor" */
+    animation: 
+        typing 2s steps(15, end), 
+        cursor 0.4s step-end infinite alternate;
+ }
+ 
+ @keyframes cursor {
+     50% { border-color: transparent; }
+ }
+ 
+ @keyframes typing {
+     from { width: 0; }
+     to { width: 100%; } /* Ensure it expands to the full width */
+ }
+  
+  .first-section p {
+    font-size: 1.2em;
+    color: var(--text-color);
+    line-height: 1.8;
+    margin-bottom: 30px;
+  }
+  
+  .first-section .explore-button {
+    padding: 15px 30px;
+    background-color: rgba(10, 198, 230, 1); /* AI Color */
+    border: 2px solid rgba(10, 198, 230, 1);
+    border-radius: 25px;
+    color: var(--white);;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .first-section .explore-button:hover {
+    background-color: transparent;
+    color: rgba(10, 198, 230, 1);
+    transform: scale(1.05);
+    border-color: rgba(10, 198, 230, 1);
+  }
+  
+  /* Image Section */
+  .first-section .image-container {
+    position: relative;
+    max-width: 40%;
+    margin-top: -70vh;
+  }
+  .first-section .image-container2 {
+    position: relative;
+    max-width: 20%;
+    margin-top: 30vh;
+  } 
+  .first-section .glow-effect {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(10, 198, 230, 0.1);
+    border: 3px solid rgba(10, 198, 230, 1);
+    border-radius: 50%;
+    animation: pulse 3s infinite;
+    z-index: 1;
+  }
+  
+  /* Glow Animation */
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+  }
+  
+   
+.cursor-dot {
+    width: 5px;
+    height: 5px;
+    background-color: rgba(10, 198, 230, 1); /* Darker for visibility */
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%); /* Center relative to the cursor position */
+    border-radius: 50%;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.cursor-outline {
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(10, 198, 230, 0.4); /* Semi-transparent border */
+    background-color: rgba(10, 198, 230, 0.1); /* Light transparent fill */
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%); /* Center relative to the cursor position */
+    border-radius: 50%;
+    z-index: 999;
+    pointer-events: none;
+    transition: transform 0.2s ease-out; /* Smooth trailing effect */
+    overflow: visible; /* Ensure scaling doesn't hide animation */
+}
+
+
+
+.marquee{
+    margin-top: 30vh;
+    margin-bottom: 20vh;
+}
+.marquee-text {
+  width: 100vw;
+  font-size: 15px;
+  padding-block: 8px;
+  border: 2px solid var(--marquee-background-color); /* Semi-transparent border */
+  box-shadow: 0px 0px 20px var( --shadow-container-color);
+  overflow: hidden;
+  user-select: none;
+  display: flex;
+  position: relative;
+  margin-bottom: 5vh;
+  background-color: var(--marquee-background-color);
+}
+
+.marquee-text-track-left {
+  display: flex;
+  padding-left: 4.8rem;
+  gap: 4.8rem;
+  width: max-content;
+  animation: marquee-move-text_totheleft var(--speed, 12s) linear infinite var(
+      --direction,
+      forwards
+    );
+    background-color: var(--marquee-background-color);
+}
+.marquee-text-track-right {
+    display: flex;
+    padding-left: 4.8rem;
+    gap: 4.8rem;
+    width: max-content;
+    animation: marquee-move-text_totheright var(--speed, 12s) linear infinite var(
+        --direction,
+        forwards
+      );
+      background-color: var(--marquee-background-color);
+}
+
+
+.marquee-text img {
+  padding: 1rem;
+  width: 80px; /* Adjust width as needed */
+  height: 70px; /* Adjust height as needed */
+  background-color: var(--marquee-background-color);
+}
+
+@keyframes marquee-move-text_totheleft {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes marquee-move-text_totheright {
+    from {
+      transform: translateX(-50%); /* Start at -50% to give the effect of moving in */
+    }
+    to {
+      transform: translateX(0); /* Move to the original position */
+    }
+}
+@keyframes appear{
+    from{
+        opacity:0;
+        scale:0.4;
+    }
+    to {
+        opacity:1;
+        scale:1
+    }
+}
+.about {
+    margin-top: 1vh;
+    margin-bottom: 1px;
+    background-color:var(--container-background-color);
+    width: 80%;
+    justify-self: center;
+    height: auto;
+    border: 1px solid rgba(199, 201, 202, 0.4);
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px var(--shadow-container-color); /* Shadow on all sides */
+}
+.about:hover{
+    box-shadow: 0 0 25px 10px rgba(10, 198, 230, 1); /* Shadow on all sides */
+}
+.about h2{
+    text-align: center;
+    color: black;
+    background-color: var(--white-container);
+}
+.about p{
+    font-size: 18px;
+    text-align: center;
+    text-justify: auto;
+    color: black;
+    background-color: var(--white-container);
+}
+.block{
+    animation:appear 5s linear;
+    animation-timeline: view();
+    animation-range:entry 0% cover 40%;
+}
+/* Flexbox Layout */
+/* General Style */
+/* Container */
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    padding: 3rem;
+    margin-top: 4rem;
+    z-index: 2;
+  }
+  
+  /* Individual Stats Items */
+  .stats-item {
+    background: var(--container-background-color);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0px 0px 20px var(--shadow-container-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Number Styling */
+  .number {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    position: relative;
+    margin-bottom: 1rem;
+    background-color: var(--white-container);
+  }
+  
+  /* Text Styling */
+  .text {
+    font-size: 16px;
+    color: #555;
+    font-weight: normal;
+    background-color: var(--container-background-color);
+  }
+  
+  /* Hover Effects */
+  .stats-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px var(--shadow-container-color);
+  }
+  
+  /* Number Animations */
+  .count {
+    display: inline-block;
+    animation: count-up 2s ease-out forwards;
+    background-color: var(--white-container);
+  }
+  .count-title{
+    background-color: var(---background-color-page);
+  }
+  /* Number Counting Animation */
+  @keyframes count-up {
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Glowing Effect on Hover */
+  .stats-item:hover .number {
+    color: rgba(10, 198, 230, 1);
+    text-shadow: 0px 0px 8px rgba(10, 198, 230, 0.6);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .stats-container {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    .stats-item {
+      width: 180px;
+      margin-bottom: 2rem;
+    }
+  }

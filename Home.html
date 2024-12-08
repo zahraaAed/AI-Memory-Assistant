@@ -7,11 +7,15 @@
     <title>Home</title>
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="Home.css" />
+  
 
 </head>
 
-<body>
-    <!-- Placeholder for the header -->
+<body id="body">
+ 
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+    <!--header--> 
     <div id="header"></div>
 
     <main class="main-container">
@@ -24,7 +28,7 @@
             </div>
             <div class="video">
                 <video autoplay loop>
-                    <source src="Assets/Brain.mp4" type="video/mp4">
+                    <source src="assets/Brain.mp4" type="video/mp4">
                     Your browser doesn't support video tag
                 </video>
             </div>
@@ -138,6 +142,7 @@
 
 
     <script>
+           
         // Dynamically load the header using js 
         document.addEventListener('DOMContentLoaded', () => {
             fetch('Header.html')
@@ -167,24 +172,85 @@
                 })
                 .catch(error => console.error('Error loading footer:', error));
         });
-        document.addEventListener('DOMContentLoaded', () => {
-    const switcher = document.getElementById('modeSwitcher');
-    const currentMode = localStorage.getItem('theme') || 'light';
+   
 
-    if (currentMode === 'dark') {
-        document.body.classList.add('dark-mode');
-        switcher.textContent = 'Switch to Light Mode';
-    }
+//cursor
 
-    switcher.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        const mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-        switcher.textContent = mode === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
-        localStorage.setItem('theme', mode);
+const cursorDot = document.querySelector("[data-cursor-dot]");
+const cursorOutline = document.querySelector("[data-cursor-outline]");
+
+if (cursorDot && cursorOutline) {
+    console.log("Cursor elements found!");
+
+    let posX = 0, posY = 0; // Cursor-dot position
+    let outlineX = 0, outlineY = 0; // Cursor-outline position
+
+    window.addEventListener("mousemove", (e) => {
+        posX = e.clientX;
+        posY = e.clientY;
+
+        // Instantly update cursor-dot position
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+        
     });
+
+    // Add a trailing effect using requestAnimationFrame
+    const animateOutline = () => {
+        // Smoothly interpolate outline's position towards the dot
+        outlineX += (posX - outlineX) * 0.2; // Adjust speed with the factor (0.2)
+        outlineY += (posY - outlineY) * 0.2;
+
+        cursorOutline.style.left = `${outlineX}px`;
+        cursorOutline.style.top = `${outlineY}px`;
+        
+
+        requestAnimationFrame(animateOutline); // Keep animating
+    };
+    animateOutline(); // Start the animation loop
+
+    // Add click effect without misaligning the dot
+    window.addEventListener("mousedown", () => {
+        cursorOutline.style.transform = "translate(-50%, -50%) scale(0.8)";
+    });
+
+    window.addEventListener("mouseup", () => {
+        cursorOutline.style.transform = "translate(-50%, -50%) scale(1)";
+    });
+} else {
+    console.error("Cursor elements not found. Check your HTML structure.");
+}
+/////////////////////////////////////////////////////////////////////
+
+
+const counters = document.querySelectorAll('.count');
+const speed = 200; // Adjust speed as needed
+
+counters.forEach((counter) => {
+  const updateCount = () => {
+    const target = parseInt(counter.getAttribute('data-target'), 10);
+    const count = parseInt(counter.innerText, 10);
+
+    // Dynamically calculate increment
+    const increment = Math.ceil(target / speed);
+
+    if (count < target) {
+      counter.innerText = count + increment > target ? target : count + increment;
+      setTimeout(updateCount, 80); // Adjust timing for smooth animation
+    } else {
+      counter.innerText = target; // Ensure final value matches the target
+    }
+  };
+
+  updateCount();
 });
+/////////////////////////////////////////////////////////////////////
 
-
+const dark = document.getElementById('dark');
+const body = document.getElementById('body');
+dark.addEventListener('click', () => {
+  body.classList.toggle('dark'); // Toggles the dark-mode class on the body
+});
     </script>
 </body>
 

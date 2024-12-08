@@ -1,3 +1,7 @@
+body{
+    cursor: none;
+}
+
 .contact-container {
     background: linear-gradient(to bottom, #000000 20%, #1f4d81 50%, #000000 100%);
     min-height: 100vh; 
@@ -23,6 +27,7 @@
     opacity: 0.8;
     padding: 50px;
     border-radius: 30px;
+    margin: 30px;
     max-width: 1000px;
 
 }
@@ -33,16 +38,19 @@
 
 }
 
-.form-content input,
+.contact-input,
 .form-content textarea {
     
     width: 100%; 
-    padding: 10px;
+    padding: 19px;
   margin-bottom: 15px;
 
     font-size: 16px;
     border: 2px solid #1f4d81;
     border-radius: 10px;
+}
+.contact-input {
+    visibility: visible;
 }
 
 .form-content input:focus,
@@ -67,9 +75,39 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 100%; 
-    margin: 15px;
+    
 }
 
 .form-content button:hover {
     background-color: #1f4d81; 
+}
+
+
+.cursor-dot {
+    width: 5px;
+    height: 5px;
+    background-color: rgba(10, 198, 230, 1); /* Darker for visibility */
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%); /* Center relative to the cursor position */
+    border-radius: 50%;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.cursor-outline {
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(10, 198, 230, 0.4); /* Semi-transparent border */
+    background-color: rgba(10, 198, 230, 0.1); /* Light transparent fill */
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%); /* Center relative to the cursor position */
+    border-radius: 50%;
+    z-index: 999;
+    pointer-events: none;
+    transition: transform 0.2s ease-out; /* Smooth trailing effect */
+    overflow: visible; /* Ensure scaling doesn't hide animation */
 }
