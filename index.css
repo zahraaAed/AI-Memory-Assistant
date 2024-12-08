@@ -5,10 +5,7 @@
 }
 body{
     background-color: rgb(0, 0, 0);
-
     color: white;
-  
-    
 }
 p{
     line-height: 1.5;
@@ -27,3 +24,15 @@ h2 {
     color: transparent; /* to show the gradient */
     font-weight: bold;
 }
+
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  p.light-mode{
+    color: #1f4d81;
+  }
+  h2.light-mode {
+ 
+    background: linear-gradient(to right, #000000 10%, #6096D9 25%, #1f4d81 70%);
+  }

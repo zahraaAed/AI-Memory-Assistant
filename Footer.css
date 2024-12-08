@@ -2,7 +2,7 @@
 footer{
    
    
-    padding: 30px;
+    padding: 20px;
 }
 .footer-content{
     display: flex;
@@ -12,13 +12,13 @@ footer{
 .footer-content p,h2{
     text-align: center;
     width: 40%;
-    padding-top: 30px;
+    padding-top: 10px;
 }
 
 .footer-bottom span{
     color:#6096D9;
 }
 .footer-bottom{
-  padding-top: 30px;
+  padding-top: 20px;
     text-align: center;
 }

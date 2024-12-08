@@ -1,3 +1,5 @@
+
+
 .navbar {
     display: flex;
     flex-direction: row;
@@ -42,6 +44,68 @@
   
   
   }
+
+  label{
+	width: 100px;
+	height: 50px;
+	position: relative;
+	display: block;
+	cursor: pointer;
+	background-color: white;
+	border-radius: 30px;
+	box-shadow: inset 0px 5px 10px black, inset 0px -5px 10px gray;
+	z-index: 50;
+	transition: 0.3s;
+  }
+
+  label::after{
+	content: "";
+	width:30px;
+	height: 30px;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	background: linear-gradient(to right, #ffcc89, #d8860b);
+	border-radius: 50%;
+	
+  }
+  input{
+	width: 0;
+	height: 0;
+	visibility: hidden;
+
+  }
+
+  input:checked +label{
+	background-color: #242424;
+  }
+
+input:checked +label:after{
+	left: 90px;
+	transform: translate(-100%);
+	background: linear-gradient(to right, #777, #3a3a3a);
+}
+
+.sun{
+	width: 17px;
+	top: 65px;
+	position: absolute;
+	right: 252px;
+	transition: 0.3s;
+	z-index: 100;
+	
+  }
+.mooon{
+	width: 17px;
+	top: 62px;
+position: absolute;
+right: 200px;
+	transition: 0.3s;
+	z-index: 100;
+  }
+
+
+   
   @media screen and (max-width: 623px) {
     .navbar {
       flex-direction: column; 
@@ -62,3 +126,5 @@
       font-size: 18px;
     }
   }
+
+
