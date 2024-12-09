@@ -1,9 +1,18 @@
+
+:root{
+    --background-gradient: linear-gradient(to bottom,#000000 30%,#052347 100%); 
+    --works-background:#052347;
+    --gradient-text: linear-gradient(to right, #FFFFFF 10%,  #6096D9 60%, #1f4d81 100%); 
+}
+.light{
+    --background-gradient:  linear-gradient(to bottom,#ffffff 30%,#6096D9 100%); 
+    --works-background:#6096D9;
+    --gradient-text: linear-gradient(to right, #000000 10%,  #274161 60%, #1f4d81 100%); 
+}
 .main-content{
     display: flex;
 justify-content: space-around;
 margin-top: 70px;
-
-
 
 }
 .content{
@@ -16,7 +25,7 @@ margin-top: 70px;
 .content h1{
     font-size: 48px;
     padding-bottom: 30px;
-    background: linear-gradient(to right, #FFFFFF,  #6096D9, #1f4d81); 
+    background: var(--gradient-text);
   
     background-clip: text; /* For other browsers */
     color: transparent; /* to show the gradient */
@@ -75,7 +84,7 @@ margin-top: 70px;
 .features h1{
     font-size: 48px;
     padding-bottom: 30px;
-    background: linear-gradient(to right, #FFFFFF 10%,  #6096D9 60%, #1f4d81 100%); 
+    background: var(--gradient-text);
   
     background-clip: text; /* For other browsers */
     color: transparent; /* to show the gradient */
@@ -92,7 +101,7 @@ flex-direction: column;
 margin-top: 60px;
 gap: 70px;
 padding-bottom: 50px;
-    background: linear-gradient(to bottom,#000000 30%,#052347 100%); 
+    background: var(--background-gradient)
  
   
    
@@ -152,7 +161,7 @@ border: 3px solid #052347;
 /*works steps*/
 .works-steps{
     padding: 60px;
-    background-color: #052347 ;
+    background-color:var(--works-background);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -184,8 +193,8 @@ border: 3px solid #052347;
 }
 .works-steps h2{
     text-align: center;
-    background: linear-gradient(to right, #FFFFFF 40%, #6096D9 60%, #1f4d81 100%);
-
+    background: var(--gradient-text);
+font-size: 48px;
     background-clip: text; /* For other browsers */
     color: transparent; /* to show the gradient */
     font-weight: bold;

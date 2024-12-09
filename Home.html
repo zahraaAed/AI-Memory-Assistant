@@ -18,13 +18,16 @@
     <!--header--> 
     <div id="header"></div>
 
+    
+    <button id="light" >Switch Mode</button>
+
     <main class="main-container">
         <div class="main-content">
             <div class="content">
                 <h1 class="AI">Artificial Intelligence Memory Assistant</h1>
                 <p>Never forget a task, idea, or meeting again. Your personalized memory assistant, powered by advanced
                     AI.</p>
-                <button>Try Now!</button>
+                <button><a href="https://chromewebstore.google.com/detail/memorai-%E2%80%93-ai-memory-assis/kjncpaiejgkgpgiiibmnjnkahokdgfap"> Try Now!</a> </button>
             </div>
             <div class="video">
                 <video autoplay loop>
@@ -142,7 +145,15 @@
 
 
     <script>
-           
+           //mode
+           const light = document.getElementById('light');
+const body = document.getElementById('body');
+light.addEventListener('click', () => {
+  body.classList.toggle('light'); // Toggles the light-mode class on the body
+});
+
+
+
         // Dynamically load the header using js 
         document.addEventListener('DOMContentLoaded', () => {
             fetch('Header.html')
@@ -246,11 +257,6 @@ counters.forEach((counter) => {
 });
 /////////////////////////////////////////////////////////////////////
 
-const dark = document.getElementById('dark');
-const body = document.getElementById('body');
-dark.addEventListener('click', () => {
-  body.classList.toggle('dark'); // Toggles the dark-mode class on the body
-});
     </script>
 </body>
 

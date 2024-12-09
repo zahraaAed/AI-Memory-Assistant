@@ -2,15 +2,22 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
+}
+:root{
+  --container-background-color:#000000;
+  --text-color:white;
+  --text-gradient-color:linear-gradient(to right, #FFFFFF 10%, #6096D9 25%, #1f4d81 70%);
+}
+.light{
+  --container-background-color:#fcfcfc;
+  --text-color:#1f4d81;
+  --text-gradient-color:linear-gradient(to right, #000000 10%, #6096D9 25%, #1f4d81 70%);
+  
 }
 body{
-    background-color: rgb(0, 0, 0);
+    background-color:var(--container-background-color);
     color: white;
-}
-
-body.light-mode {
-  background-color: white;
-  color: black;
 }
 body.dark-mode .main-container {
   background-color: #333;
@@ -21,28 +28,7 @@ p{
     line-height: 1.5;
 
     font-size: 20px;
-    color: white;
-}
-h2 {
-    margin-bottom: 10px;
-    font-size: 40px;
-    padding-bottom: 30px;
-    background: linear-gradient(to right, #FFFFFF 10%, #6096D9 25%, #1f4d81 70%);
-
-  
-    background-clip: text; /* For other browsers */
-    color: transparent; /* to show the gradient */
-    font-weight: bold;
+    color: var(--text-color);
 }
 
-body.light-mode {
-    background-color: #ffffff;
-    color: #000000;
-  }
-  p.light-mode{
-    color: #1f4d81;
-  }
-  h2.light-mode {
- 
-    background: linear-gradient(to right, #000000 10%, #6096D9 25%, #1f4d81 70%);
-  }
+

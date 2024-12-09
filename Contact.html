@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="Contact.css" />
 </head>
 
-<body class="contact-container">
+<body id="body">
+    <div class="contact-container">
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
     <div id="header"></div>
+    <button id="light" >Switch Mode</button>
     <main class="contact-content">
         <h1>We’d Love to Hear From You!</h1>
         <p>
@@ -22,17 +24,28 @@
             <h2>Let’s Connect Constellations</h2>
             <p>We’d Love to Hear From You!</p>
             <form id="contact-form">
-                <input type="text" id="first-name" placeholder="First Name" required class="contact-input">
-                <input type="text" id="last-name" placeholder="Last Name" required class="contact-input">
-                <input type="email" id="email" placeholder="Name@gmail.com" required class="contact-input">
-                <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                <input type="text" id="first-name" placeholder="First Name" class="contact-input">
+                <input type="text" id="last-name" placeholder="Last Name" class="contact-input">
+                <input type="email" id="email" placeholder="Name@gmail.com"  class="contact-input">
+                <textarea id="message" placeholder="Your Message" rows="5" ></textarea>
                 <button type="submit">Submit</button>
             </form>
             <div id="form-feedback" style="display: none; margin-top: 20px;"></div>
         </div>
     </main>
+</div>
 </body>
 <script>
+
+      //mode
+      const light = document.getElementById('light');
+const body = document.getElementById('body');
+light.addEventListener('click', () => {
+  body.classList.toggle('light'); // Toggles the light-mode class on the body
+});
+
+
+
     document.addEventListener('DOMContentLoaded', () => {
         // Load header dynamically
         fetch('Header.html')
@@ -47,6 +60,8 @@
             })
             .catch(error => console.error('Error loading header:', error));
     });
+
+
     // Form handling
     const form = document.getElementById('contact-form');
     const feedback = document.getElementById('form-feedback');
@@ -55,7 +70,7 @@
         e.preventDefault(); // Prevent default submission
 
         // Gather form data
-        const firstName = document.getElementById('first-name').value.trim();
+        const firstName = document.getElementById('first-name').value.trim();  //trim is used to to remove whitespace (spaces, tabs, and newlines) from both the beginning and the end of a string
         const lastName = document.getElementById('last-name').value.trim();
         const email = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
@@ -80,8 +95,6 @@
         feedback.style.color = 'green';
         feedback.textContent = `Thank you, ${firstName}! Your message has been submitted.`;
 
-        // Optionally log the data or send it to a server
-        console.log({ firstName, lastName, email, message });
 
         // Reset the form
         form.reset();
